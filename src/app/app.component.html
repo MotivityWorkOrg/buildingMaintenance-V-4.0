@@ -1,0 +1,13 @@
+<header>
+  <nav *ngIf="isLoggedIn">
+    <a [routerLink]="['home']">Home</a>
+    <a [routerLink]="['about']">About</a>
+  </nav>
+</header>
+<main>
+  <h1 *ngIf="!isLoggedIn">{{title}}</h1>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <h4>Footer Inf Here</h4>
+</footer>

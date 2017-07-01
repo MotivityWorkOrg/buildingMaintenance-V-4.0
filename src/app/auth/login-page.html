@@ -1,0 +1,54 @@
+<div class="sign-in-pg">
+  <div class="center-block">
+    <!--<h1 class="usr-title">Logo comes here</h1>-->
+    <h1 class="usr-title">Login To Your Account</h1>
+    <div *ngIf="errorMessage !== ''" class="alert-danger">
+      <label>{{errorMessage}}</label>
+    </div>
+    <form class="form " [formGroup]="loggedUser" (ngSubmit)="login(loggedUser.value)" autocomplete="off" novalidate>
+      <div class="form-group" [ngClass]="{'has-error':fh.hasError(loggedUser, 'username')}">
+        <input type="text" name="username" class="form-control" placeholder="Enter User Name" id="loginEmail"
+               formControlName="username" required>
+        <div class="alert alert-danger" *ngIf="fh.hasError(loggedUser, 'username')">Username must be at least 3
+          characters long.
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':fh.hasError(loggedUser, 'password')}">
+        <input type="password" name="password" placeholder="Enter Password" class="form-control"
+               formControlName="password" required>
+      </div>
+      <div class="alert alert-danger" *ngIf="fh.hasError(loggedUser, 'password')">Password must be at least 6 characters
+        long.
+      </div>
+
+      <div>
+        <input type="checkbox" title="checkbox">
+        <label>Remember Me</label>
+        <button class="btn btn-inverse btn-sm btn-primary pull-right" [disabled]="!loggedUser.valid" type="submit">
+          Login
+        </button>
+      </div>
+      <div class="clear-fix">
+        <a class="btn-register" [routerLink]="['./register']">
+          Create New Account
+        </a>
+        <!--<a class="btn btn-default btn-sm btn-link" ui-sref="forgotPassword">
+          Forgot Password
+        </a>-->
+      </div>
+      <!--<div>
+        Connect with: <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')">
+        <i class="fa fa-facebook"></i> Facebook
+      </a>
+        <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
+          <i class="fa fa-twitter"></i> Twitter
+        </a>
+        <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
+          <i class="fa fa-twitter"></i> G-Mail
+        </a>
+      </div>-->
+    </form>
+  </div>
+</div>
+

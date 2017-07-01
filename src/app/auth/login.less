@@ -1,0 +1,58 @@
+.title {
+  font-size: @font-size-lg;
+  padding: 0 10px 25px;
+  text-align: center;
+}
+
+.sign-in-pg {
+  .center-block {
+    max-width: 95%;
+    width: 400px;
+    margin: 10% auto auto;
+    border: 10px solid @gray-light;
+    padding: @pad-base * 2;
+    .border-radius (10px);
+  }
+  .help-block {
+    color: @red !important;
+    font-size: @font-size-xs;
+  }
+  .usr-title {
+    .title ();
+  }
+}
+
+// Sign Up CSS Start Here
+.sign-up-pg {
+  .center-block {
+    max-width: 95%;
+    width: 850px;
+    margin:25px auto;
+    border: 10px solid @gray-light;
+    padding: @pad-base * 2;
+    .border-radius (10px);
+  }
+  .help-block {
+    color: @red !important;
+    font-size: @font-size-xs;
+  }
+  .usr-title {
+    .title ();
+  }
+  .form-group {
+    width: 50%;
+    max-width: 400px;
+    float: left;
+    padding-right: 20px;
+  }
+}
+.clr, .clear-fix {
+  clear: both;
+}
+.btn {
+  padding: 7px 20px;
+  font-size: @font-size-base;
+}
+
+
+@import '../../styles/custom-variables.less';

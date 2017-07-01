@@ -1,0 +1,81 @@
+<div class="sign-up-pg">
+  <div class="center-block">
+    <h1 class="usr-title">Sign Up</h1>
+    <div *ngIf="errorMessage !== ''" class="alert-danger">
+      <label>{{errorMessage}}</label>
+    </div>
+    <form class="form" [formGroup]="registerUser" (ngSubmit)="register(registerUser.value)" novalidate
+          autocomplete="off">
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'firstName')}">
+        <label>First Name</label>
+        <input type="text" placeholder="Enter first name" class="form-control"
+               formControlName="firstName" required/>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'lastName')}">
+        <label>Last Name</label>
+        <input type="text" placeholder="Enter last name" class="form-control"
+               formControlName="lastName" required/>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.mailFormat(registerUser, 'email')}">
+        <label>Email</label>
+        <input type="email" placeholder="Enter email" class="form-control" formControlName="email"
+               required/>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'username')}">
+        <label>Username</label>
+        <input type="text" placeholder="Enter username" class="form-control" formControlName="username"
+               required/>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'password')}">
+        <label>Password</label>
+        <input type="password" placeholder="Enter password" class="form-control"
+               formControlName="password" required/>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'confirm')}">
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Enter confirm password" class="form-control"
+               formControlName="confirm" required/>
+        <div class="alert-danger" *ngIf="registerUser.hasError('mismatchedPasswords')">
+          Passwords do not match
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'phoneNumber')}">
+        <label>Phone Number</label>
+        <input type="tel" formControlName="phoneNumber" placeholder="Enter phone number" class="form-control"
+               [maxlength]="10" required/>
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <div class="form-inline">
+          <select name="day" title="day" class="form-control" required formControlName="day">
+            <option value="" disabled>Day</option>
+            <option *ngFor="let date of datesList" value="{{date}}">{{date}}</option>
+          </select>
+          <select name="month" title="month" class="form-control" required formControlName="month">
+            <option value="" disabled>Month</option>
+            <option *ngFor="let month of monthList" value="{{month.id}}">{{month.name}}</option>
+          </select>
+          <select name="year" title="year" class="form-control" required formControlName="year">
+            <option value="" disabled>Year</option>
+            <option *ngFor="let year of yearList" value="{{year}}">{{year}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'role')}">
+        <label>Role</label>
+        <select class="form-control" formControlName="role" title="role" required>
+          <option disabled value="">Role</option>
+          <option *ngFor="let option of roleList" value="{{option.name}}">{{option.name}}</option>
+        </select>
+      </div>
+      <div class="clr text-center">
+        <button class="btn btn-primary btn-sm btn-login" type="submit" [disabled]="!registerUser.valid">
+          Sign Up
+        </button>
+        <a class="btn btn-default btn-sm btn-register" [routerLink]="['/']">
+          Login
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

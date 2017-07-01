@@ -1,0 +1,76 @@
+<div>
+  <h2>
+    Total Expenditure of {{expenditure.periodInfo}}
+    <label class="pull-right {{spanColor}}">By Hand: <span>{{expenditure.byHand}}.00</span></label>
+  </h2>
+</div>
+
+<div class="table-responsive income">
+  <h3>Income</h3>
+  <table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+      <th>Payment Date</th>
+      <th>Flat</th>
+      <th>Category</th>
+      <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let income of expenditure.income" (dblclick)="modifyData(income, 'Income')">
+      <td>{{ dateFilter(income.paymentDate) }}</td>
+      <td>{{income.flatNo}}</td>
+      <td>{{ income.category }}
+        <!--<div data-toggle="tooltip" data-original-title="{{income.description}}">
+          {{ income.category }}
+        </div>-->
+      <td>{{ income.amount }}.00</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td text-align="right" colspan="3">Total Income</td>
+      <td>{{ expenditure.totalIncome }}.00</td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="table-responsive expenses">
+  <h3>Expenses</h3>
+  <table id="expenses" class="table table-hover table-bordered">
+    <thead>
+    <tr>
+      <th>Payment Date</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Bill</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let expenses of expenditure.expenses" (dblclick)="modifyData(expenses, 'Expense')">
+      <td>{{ dateFilter(expenses.paymentDate)}}</td>
+      <td>{{ expenses.category }}
+        <!-- <div data-toggle="tooltip" data-original-title="{{expenses.description}}">
+           {{ expenses.category }}
+         </div>-->
+      </td>
+      <td *ngIf="expenses.url"><a href="{{ expenses.url }}" target="_blank">Bill</a></td>
+      <td>{{ expenses.amount }}.00</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td text-align="right" colspan="3">Total Expenses</td>
+      <td>{{ expenditure.totalExpenses }}.00</td>
+    </tr>
+    <tr>
+      <td text-align="right" colspan="3">Total Income</td>
+      <td>{{ expenditure.totalIncome }}.00</td>
+    </tr>
+    <tr>
+      <td colspan="3">Grand Total</td>
+      <td>{{expenditure.byHand}}.00</td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

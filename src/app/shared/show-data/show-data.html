@@ -1,0 +1,18 @@
+<form class="form-horizontal" [formGroup]="showDataForm">
+  <h4 class="alert-danger" *ngIf="showDataSubmitted && errorMessage != ''"> {{errorMessage}} </h4>
+  <div class="col-sm-2">
+    <select class="form-control" title="Select month or year" formControlName="showView"
+            (change)="onChangeExpSelection($event.currentTarget.value)">
+      <option value="" disabled>Select Type</option>
+      <option *ngFor="let monthYear of monthOrYearList" [value]="monthYear.type">{{monthYear.type}}</option>
+    </select>
+  </div>
+  <div class="col-sm-2" *ngIf="mothDatePicker">
+    <my-date-picker title="Date" [options]="myMonthDatePickerOptions" formControlName="monthDate"></my-date-picker>
+  </div>
+  <div class="col-sm-2" *ngIf="yearDatePicker">
+    <my-date-picker title="Date" [options]="yearDatePickerOptions" formControlName="yearDate"></my-date-picker>
+  </div>
+  <button class="btn btn-success" (click)="getUserSelectedMonthInfo(showDataForm.value)">View</button>
+</form>
+
