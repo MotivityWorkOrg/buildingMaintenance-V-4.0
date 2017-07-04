@@ -37,6 +37,7 @@
     "core-js": "^2.4.1",
     "moment": "^2.18.1",
     "mydatepicker": "^2.0.21",
+    "ng2-accordion": "0.0.15",
     "ng2-toastr": "^4.1.2",
     "ng2-ui-auth": "^6.2.0",
     "reflect-metadata": "^0.1.3",

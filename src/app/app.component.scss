@@ -3,7 +3,12 @@
   display: block;
 }
 
-header {
+header.block {
+  display: block;
+  position: static;
+}
+
+header.active {
   background-color: #fff;
   padding: 16px;
   position: fixed;
@@ -11,6 +16,7 @@ header {
   left: 0;
   width: 100%;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 main {
@@ -28,6 +34,7 @@ footer {
 .active {
   display: block;
 }
-.disabled{
+
+.disabled {
   display: none;
 }

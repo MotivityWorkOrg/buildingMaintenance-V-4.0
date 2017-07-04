@@ -17,6 +17,14 @@ export class MaintenanceService {
     return this.getAllExpenses();
   }
 
+  public resetPassword( email: string ): Promise<any> {
+    return this.doResetPassword(email);
+  }
+
+  public changePassword( data: any ): Promise<any> {
+    return this.doChangePassword(data);
+  }
+
   public getIncomeTypes(): Promise<Types[]> {
     return this.getAllIncomes();
   }
@@ -47,6 +55,22 @@ export class MaintenanceService {
 
   public getExpensesAndIncomeInfo( period ): Promise<any> {
     return this.incomeExpensesInfo(period);
+  }
+
+  private doChangePassword( data: any ) {
+    let baseUrl: string = this.baseURL + '/api/reset-password';
+    return this.http.post(baseUrl, data).toPromise()
+      .then(( response ) => {
+        console.log(' Email Sent ', response);
+      }).catch(this.handleError);
+  }
+
+  private doResetPassword( email: string ) {
+    let baseUrl: string = this.baseURL + '/api/forgot-password';
+    return this.http.post(baseUrl, email).toPromise()
+      .then(( response ) => {
+        console.log(' Email Sent ', response);
+      }).catch(this.handleError);
   }
 
   private incomeExpensesInfo( period ) {

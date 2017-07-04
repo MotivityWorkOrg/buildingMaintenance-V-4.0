@@ -1,7 +1,82 @@
-<div>
-  <h2>
-    Total Expenditure of {{expenditure.periodInfo}}
-    <label class="pull-right {{spanColor}}">By Hand: <span>{{expenditure.byHand}}.00</span></label>
-  </h2>
+<div class="form-group">
+  <accordion [showArrows]="true" [closeOthers]="true">
+    <accordion-group [isOpened]="isOpened"
+                     *ngFor="let item of expenditures">
+      <accordion-heading class="show-cursor">
+        {{item.periodInfo}} - Income {{item.totalIncome}} - Expenses {{item.totalExpenses}} - Total
+        {{item.byHand}}
+      </accordion-heading>
+      <!--<div ng-include="group.templateUrl"></div>-->
+      <!--<div ng-repeat="subitem in item.subitems">{{subitem.desc}}</div>-->
+      <div class="table-responsive expenses">
+        <h3>Expenses</h3>
+        <table id="expenses" class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>Payment Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <!--<th>Bill</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let expenses of item.expenses">
+            <td>{{ dateFilter(expenses.paymentDate) }}</td>
+            <td>{{ expenses.category }}
+              <!--<div data-toggle="tooltip" data-original-title="{{expenses.description}}" tooltip-loader>
+
+              </div>-->
+            </td>
+            <!--<td ng-show="expenses.bill.length"><a href="{{ expenses.bill }}" target="_blank">Bill</a></td>-->
+            <td>{{ expenses.amount }}.00</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td text-align="right" colspan="2">Total Expenses</td>
+            <td>{{ item.totalExpenses }}.00</td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="table-responsive income">
+        <h3>Income</h3>
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>Payment Date</th>
+            <th>Flat</th>
+            <th>Category</th>
+            <th>Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let income of item.income">
+            <td>{{ dateFilter(income.paymentDate) }}</td>
+            <td>{{income.flatNo}}</td>
+            <td>{{ income.category }}
+              <!--<div data-toggle="tooltip" data-original-title="{{income.description}}" tooltip-loader>
+
+              </div>-->
+            <td>{{ income.amount }}.00</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td text-align="right" colspan="3">Total Income</td>
+            <td>{{ item.totalIncome }}.00</td>
+          </tr>
+          <tr>
+            <td text-align="right" colspan="3">Total Expenses</td>
+            <td>{{ item.totalExpenses }}.00</td>
+          </tr>
+          <tr>
+            <td colspan="3">Grand Total</td>
+            <td>{{item.byHand}}.00</td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </accordion-group>
+  </accordion>
 </div>
-<div> this is Year View</div>

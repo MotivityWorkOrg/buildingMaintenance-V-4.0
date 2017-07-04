@@ -1,0 +1,97 @@
+<!-------------------->
+<div class="admin-form" style="padding-top: 10px">
+  <label>View Expenditure for: </label>
+  <show-data (showSelectedView)="selectedView($event)"></show-data>
+  <form class="form-horizontal" [formGroup]="maintenanceForm" autocomplete="off" novalidate>
+    <h3>Monthly Entries</h3>
+    <h4 class="alert-danger" *ngIf="maintenanceSubmitted && errorMessage != ''"> {{errorMessage}} </h4>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Period</label>
+      <div class="col-sm-3">
+        <my-date-picker title="Period" [options]="periodDatePickerOptions"
+                        formControlName="periodDate"></my-date-picker>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Payment Date</label>
+      <div class="col-sm-3">
+        <my-date-picker title="Payment Date" [options]="myDatePickerOptions"
+                        formControlName="paymentDate"></my-date-picker>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Type</label>
+      <div class="col-sm-3">
+        <select class="form-control" title="Maintenance Type" formControlName="maintenanceType"
+                (change)="changeCategory($event.currentTarget.value)">
+          <option value="" disabled> Maintenance Type</option>
+          <option *ngFor="let maintenance of maintenanceTypes" [value]="maintenance.type">
+            {{maintenance.type}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="maintenanceType === 'expense'">
+      <label class="control-label col-sm-2">Category</label>
+      <div class="col-sm-3">
+        <select title="Expense Type" class="form-control" required formControlName="expenseType">
+          <option value="" disabled>Expense Type</option>
+          <option *ngFor="let expense of expensesTypeList" [value]="expense.type">{{expense.type}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="maintenanceType === 'income'">
+      <label class="control-label col-sm-2">Category</label>
+      <div class="col-sm-3">
+        <select title="Income Type" class="form-control" required formControlName="incomeType">
+          <option value="" disabled>Income Type</option>
+          <option *ngFor="let income of listOfIncomes" [value]="income.type">{{income.type}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="maintenanceType === 'income'">
+      <label class="control-label col-sm-2" for="flat">Flat Number</label>
+      <div class="col-sm-3">
+        <select class="form-control" formControlName="flatNo" id="flat" title="Flat No">
+          <option value="" disabled>Select Flat</option>
+          <option *ngFor="let flat of getAllFlats" [value]="flat.type">{{flat.type}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Amount</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="Enter Amount" formControlName="amount" required
+               [maxlength]="4">
+      </div>
+    </div>
+    <div class="form-group" *ngIf="maintenanceType === 'expense'">
+      <label class="control-label col-sm-2">Bill</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" formControlName="url" placeholder="Paste attachment url">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Comments</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="Enter Comments" formControlName="comment">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-2">
+        <button class="btn btn-default"
+                (click)="addMonthlyIncomeOrExpenses(maintenanceForm)">Add
+        </button>
+        <button class="btn btn-danger" (click)="refreshForm()">Cancel</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="isMonthView">
+    <show-month-view [expenditure]="totalExpenditure"
+                     (updateSelectedInfo)="onModifySelectedData($event)"></show-month-view>
+  </div>
+  <div *ngIf="!isMonthView">
+    <show-year-view *ngIf="!isMonthView" [expenditures]="totalYearExpenditure"></show-year-view>
+  </div>
+</div>

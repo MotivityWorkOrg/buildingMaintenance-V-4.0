@@ -8,7 +8,8 @@
     </select>
   </div>
   <div class="col-sm-2" *ngIf="mothDatePicker">
-    <my-date-picker title="Date" [options]="myMonthDatePickerOptions" formControlName="monthDate"></my-date-picker>
+    <my-date-picker title="Date" [options]="myMonthDatePickerOptions" [defaultMonth]="defaultMonth"
+                    formControlName="monthDate"></my-date-picker>
   </div>
   <div class="col-sm-2" *ngIf="yearDatePicker">
     <my-date-picker title="Date" [options]="yearDatePickerOptions" formControlName="yearDate"></my-date-picker>

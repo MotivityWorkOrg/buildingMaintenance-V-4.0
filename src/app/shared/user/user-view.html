@@ -1,0 +1,6 @@
+<div class="form-group" style="padding-top: 10px">
+  <label class="control-label col-sm-3">View Expenditure for: </label>
+  <show-data (showSelectedView)="selectedView($event)"></show-data>
+</div>
+<show-month-view *ngIf="isMonthView" [expenditure]="totalExpenditure"></show-month-view>
+<show-year-view *ngIf="!isMonthView" [expenditures]="totalYearExpenditure"></show-year-view>

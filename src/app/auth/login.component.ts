@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
                private router: Router,
                private eh: ErrorHandleService,
                public fh: FormHelperService,
-               private appComponent: AppComponent ) {
+               private appComponent: AppComponent) {
   }
 
   public ngOnInit() {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.submitState('login');
   }
 
-  public login( loginData: ILoginData ) {
+  public login( loginData: ILoginData ): void {
     // console.log (' Login Data is ::: ' + JSON.stringify (loginData));
     this.auth.login(loginData).subscribe({
       next: ( response ) => this.loginSuccess(response),
@@ -46,18 +46,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  private loginSuccess( resp: any ) {
-    //console.log(resp);
-    this.auth.setToken(resp.json().token);
+  private loginSuccess( resp: any ): void {
+    let loggedInfo = resp.json();
     this.appComponent.isLoggedIn = true;
+    localStorage.setItem('logged-user', JSON.stringify(loggedInfo.user));
+    this.auth.setToken(loggedInfo.token);
   }
 
-  private loginError( err: any ) {
+  private loginError( err: any ): void {
     this.errorMessage = err._body;
     this.eh.handleError(err);
   }
 
-  private submitState(value: string) {
+  private submitState( value: string ): void {
     console.log('submitState', value);
     this.appState.set('value', value);
   }

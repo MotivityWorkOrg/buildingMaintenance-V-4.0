@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {IMyDpOptions} from 'mydatepicker';
+import {IMyDefaultMonth, IMyDpOptions} from 'mydatepicker';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DateUtil} from '../../util/DateUtil';
 
@@ -27,6 +27,10 @@ export class ShowDataComponent implements OnInit {
       day: new Date().getDate() + 1
     },
     dateFormat: 'mmm/yyyy'
+  };
+
+  public defaultMonth: IMyDefaultMonth = {
+    defMonth: '07/2017'
   };
 
   public yearDatePickerOptions: IMyDpOptions = {

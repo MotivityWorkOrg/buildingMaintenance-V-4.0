@@ -28,6 +28,12 @@ import {ShowDataComponent} from './shared/show-data/show-data.component';
 import {MonthViewComponent} from './shared/month/month-view.component';
 import {MaintenanceModel} from './model/maintenance.model';
 import {YearViewComponent} from './shared/year/year-view.component';
+import {AdminViewComponent} from './shared/admin/admin-view.component';
+import {UserViewComponent} from './shared/user/user-view.component';
+import {LogoutComponent} from './auth/logout.component';
+import {AccordionModule} from 'ng2-accordion';
+import {ForgotPasswordComponent} from './auth/forgot/forgot-password.component';
+import {ResetPasswordComponent} from './auth/forgot/resetpassword.component';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -44,7 +50,8 @@ const APP_PROVIDERS = [
     Ng2UiAuthModule.forRoot(AuthConfig),
     ToastModule.forRoot(),
     RouterModule.forRoot(ROUTES),
-    MyDatePickerModule
+    MyDatePickerModule,
+    AccordionModule
   ],
   declarations: [
     AppComponent,
@@ -54,7 +61,12 @@ const APP_PROVIDERS = [
     SignUpComponent,
     ShowDataComponent,
     MonthViewComponent,
-    YearViewComponent
+    YearViewComponent,
+    AdminViewComponent,
+    UserViewComponent,
+    LogoutComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   providers: [
     APP_PROVIDERS,

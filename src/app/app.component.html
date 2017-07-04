@@ -1,7 +1,8 @@
-<header>
+<header [ngClass]="isLoggedIn ? 'active' : 'block'">
   <nav *ngIf="isLoggedIn">
     <a [routerLink]="['home']">Home</a>
     <a [routerLink]="['about']">About</a>
+    <a [routerLink]="['logout']">logout</a>
   </nav>
 </header>
 <main>
