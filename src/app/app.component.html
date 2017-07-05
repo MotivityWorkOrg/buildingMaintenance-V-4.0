@@ -1,12 +1,12 @@
-<header [ngClass]="isLoggedIn ? 'active' : 'block'">
-  <nav *ngIf="isLoggedIn">
+<header [ngClass]="auth.isAuthenticated() ? 'active' : 'block'">
+  <nav *ngIf="auth.isAuthenticated()">
     <a [routerLink]="['home']">Home</a>
     <a [routerLink]="['about']">About</a>
     <a [routerLink]="['logout']">logout</a>
   </nav>
 </header>
 <main>
-  <h1 *ngIf="!isLoggedIn">{{title}}</h1>
+  <h1 *ngIf="!auth.isAuthenticated()">{{title}}</h1>
   <router-outlet></router-outlet>
 </main>
 <footer>

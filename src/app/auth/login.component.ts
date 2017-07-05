@@ -6,7 +6,6 @@ import {ILoginData} from './auth.interfaces';
 import {AppState} from '../app.service';
 import {ErrorHandleService} from '../services/error-handle.service';
 import {FormHelperService} from '../services/form-helper.service';
-import {AppComponent} from '../app.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -24,8 +23,7 @@ export class LoginComponent implements OnInit {
                private auth: AuthService,
                private router: Router,
                private eh: ErrorHandleService,
-               public fh: FormHelperService,
-               private appComponent: AppComponent) {
+               public fh: FormHelperService) {
   }
 
   public ngOnInit() {
@@ -48,7 +46,6 @@ export class LoginComponent implements OnInit {
 
   private loginSuccess( resp: any ): void {
     let loggedInfo = resp.json();
-    this.appComponent.isLoggedIn = true;
     localStorage.setItem('logged-user', JSON.stringify(loggedInfo.user));
     this.auth.setToken(loggedInfo.token);
   }
