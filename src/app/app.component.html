@@ -1,7 +1,7 @@
 <header [ngClass]="auth.isAuthenticated() ? 'active' : 'block'">
   <nav *ngIf="auth.isAuthenticated()">
     <a [routerLink]="['home']">Home</a>
-    <a [routerLink]="['about']">About</a>
+    <a [routerLink]="['flats']">Flats</a>
     <a [routerLink]="['logout']">logout</a>
   </nav>
 </header>

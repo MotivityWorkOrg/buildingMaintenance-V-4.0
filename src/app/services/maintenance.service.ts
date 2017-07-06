@@ -33,6 +33,10 @@ export class MaintenanceService {
     return this.getFlats();
   }
 
+  public getFlatsUserInfo(): Promise<any> {
+    return this.savedFlatsUserInfo();
+  }
+
   public addOrUpdateExpenses( expense: Expense ): Promise<Expense> {
     let baseUrl = this.baseURL + '/api/expense';
     if (expense._id) {
@@ -57,12 +61,40 @@ export class MaintenanceService {
     return this.incomeExpensesInfo(period);
   }
 
+  public addFlatsOwnerInfo( obj: any, isUpdate = false ): Promise<any> {
+    return this.postFlats(obj, isUpdate);
+  }
+
+  private postFlats( obj: any, isUpdate ) {
+    let baseUrl: string = this.baseURL + '/api/add-flat';
+    if (isUpdate) {
+      return this.http.put(baseUrl, obj).toPromise()
+        .then(( response ) => {
+          return response.json() as any;
+        }).catch(this.handleError);
+    } else {
+      return this.http.post(baseUrl, obj).toPromise()
+        .then(( response ) => {
+          return response.json() as any;
+        }).catch(( err ) => {
+          return err.json() as any;
+        });
+    }
+  }
+
   private doChangePassword( data: any ) {
     let baseUrl: string = this.baseURL + '/api/reset-password';
     return this.http.post(baseUrl, data).toPromise()
       .then(( response ) => {
         console.log(' Email Sent ', response);
       }).catch(this.handleError);
+  }
+
+  private savedFlatsUserInfo() {
+    let baseUrl: string = this.baseURL + '/api/add-flat';
+    return this.http.get(baseUrl).toPromise()
+      .then(( response ) => response.json() as any)
+      .catch(this.handleError);
   }
 
   private doResetPassword( email: string ) {

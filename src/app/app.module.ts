@@ -34,6 +34,7 @@ import {LogoutComponent} from './auth/logout.component';
 import {AccordionModule} from 'ng2-accordion';
 import {ForgotPasswordComponent} from './auth/forgot/forgot-password.component';
 import {ResetPasswordComponent} from './auth/forgot/resetpassword.component';
+import {FlatsInfoComponent} from './flats/flats-info.component';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -66,7 +67,8 @@ const APP_PROVIDERS = [
     UserViewComponent,
     LogoutComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    FlatsInfoComponent
   ],
   providers: [
     APP_PROVIDERS,

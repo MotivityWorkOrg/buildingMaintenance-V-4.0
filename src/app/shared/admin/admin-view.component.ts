@@ -103,7 +103,7 @@ export class AdminViewComponent implements OnInit {
         expense.period = moment().format('MMMM/YYYY');
         expense.paymentDate = DateUtil.convertObjectToDate(data.paymentDate.date);
         this.maintenanceService.addOrUpdateExpenses(expense).then(( response: any ) => {
-          this.maintenanceForm.reset();
+          this.setPreSelection();
           this.itemId = '';
           this.isDataChanged = true;
           this.getSavedExpensesAndIncomeInfo();
@@ -111,7 +111,7 @@ export class AdminViewComponent implements OnInit {
         }).catch(( err: any ) => {
           this.eh.handleError(err);
         });
-        console.log(expense);
+        //console.log(expense);
       } else {
         let income = new Income();
         income._id = this.itemId;
@@ -123,7 +123,7 @@ export class AdminViewComponent implements OnInit {
         income.description = data.comment;
         //console.log(income);
         this.maintenanceService.addOrUpdateIncomes(income).then(( response: any ) => {
-          this.maintenanceForm.reset();
+          this.setPreSelection();
           this.itemId = '';
           this.isDataChanged = true;
           this.getSavedExpensesAndIncomeInfo();
@@ -136,7 +136,7 @@ export class AdminViewComponent implements OnInit {
   }
 
   public refreshForm(): void {
-    this.maintenanceForm.reset();
+    this.setPreSelection();
     console.log('Refresh Form');
   }
 
@@ -167,7 +167,8 @@ export class AdminViewComponent implements OnInit {
   }
 
   private expenditureServiceCall( period: string ): void {
-    this.maintenanceService.getExpensesAndIncomeInfo(period).then(( response ) => {
+    this.maintenanceService.getExpensesAndIncomeInfo(period)
+      .then(( response ) => {
         if (response.status === 200) {
           this.model.setExpenditure(response.data);
           this.onSuccessExpenditure(response.data, period);

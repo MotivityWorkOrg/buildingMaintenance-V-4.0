@@ -1,3 +1,5 @@
+import {FlatUser} from '../vo/flat-user.vo';
+
 export class CommonUtil {
   public static getMonthsLong = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December' ];
@@ -21,5 +23,29 @@ export class CommonUtil {
       }
     });
     return arr;
+  }
+
+  public static prepareFlatUsersObject( owners, tenants ): any {
+    let obj: any = {};
+    obj.flatUsers = [];
+    let tenantFound: boolean;
+    let flatUser: FlatUser = new FlatUser();
+    owners.forEach(( owner ) => {
+      tenantFound = false;
+      flatUser = owner;
+      flatUser.fullName = owner.firstName + ' ' + owner.lastName;
+      tenants.forEach(( tenant ) => {
+        if (owner._id === tenant._id) {
+          tenantFound = true;
+          flatUser.tenant = tenant;
+          flatUser.tenant.fullName = tenant.firstName + ' ' + tenant.lastName;
+          obj.flatUsers.push(flatUser);
+        }
+      });
+      if (!tenantFound) {
+        obj.flatUsers.push(flatUser);
+      }
+    });
+    return obj;
   }
 }
