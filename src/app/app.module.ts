@@ -35,6 +35,7 @@ import {AccordionModule} from 'ng2-accordion';
 import {ForgotPasswordComponent} from './auth/forgot/forgot-password.component';
 import {ResetPasswordComponent} from './auth/forgot/resetpassword.component';
 import {FlatsInfoComponent} from './flats/flats-info.component';
+import {TooltipModule} from 'ngx-tooltip';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -52,7 +53,8 @@ const APP_PROVIDERS = [
     ToastModule.forRoot(),
     RouterModule.forRoot(ROUTES),
     MyDatePickerModule,
-    AccordionModule
+    AccordionModule,
+    TooltipModule
   ],
   declarations: [
     AppComponent,

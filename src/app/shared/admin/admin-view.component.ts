@@ -180,7 +180,7 @@ export class AdminViewComponent implements OnInit {
   }
 
   private onSuccessExpenditure( res, year = null ): void {
-    //console.log('totalExpenditure    ', this.totalExpenditure);
+    //console.log('totalExpenditure    ', res);
     if (this.isMonthView) {
       this.totalExpenditure = res;
     } else {
@@ -305,6 +305,7 @@ export class AdminViewComponent implements OnInit {
         url: '',
         comment: ''
       });
+
     }
   }
 
