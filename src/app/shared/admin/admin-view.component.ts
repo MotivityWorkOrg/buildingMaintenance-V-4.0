@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import {Expense} from '../../vo/expense.vo';
 import {CommonUtil} from '../../util/CommonUtil';
 import {Expenditure} from '../../vo/expenditure.vo';
+import {ModalService} from '../../components/modal/modal.service';
 
 @Component({
   selector: 'admin-view',
@@ -32,6 +33,7 @@ export class AdminViewComponent implements OnInit {
   public isMonthView: boolean;
   public isDataChanged: boolean;
   public totalYearExpenditure: Array<Expenditure>;
+  private categoryUpdate: string;
   public myDatePickerOptions: IMyDpOptions = {
     disableUntil: {year: new Date().getFullYear(), month: new Date().getMonth(), day: 0},
     disableSince: {
@@ -57,12 +59,15 @@ export class AdminViewComponent implements OnInit {
                private fb: FormBuilder,
                public fh: FormHelperService,
                private model: MaintenanceModel,
-               private appState: AppState ) {
+               private appState: AppState,
+               private modalService: ModalService) {
     this.maintenanceTypes = [ {id: 0, type: 'Expense'}, {id: 1, type: 'Income'} ];
     this.isMonthView = true;
+    //modal.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {
+    this.categoryUpdate = '';
     this.maintenanceSubmitted = false;
     this.getListOfExpenses();
     this.getListOfIncomes();
@@ -84,12 +89,17 @@ export class AdminViewComponent implements OnInit {
   }
 
   public changeCategory( value ) {
-    //console.log('Category changed', value.toLowerCase());
+    //console.log(this.categoryUpdate, '  Category changed  ', value.toLowerCase());
+    if (this.categoryUpdate.toLowerCase() !== '' && this.categoryUpdate !== value) {
+      console.log(this.categoryUpdate, '  Category changed  ', value.toLowerCase());
+      this.modalService.open('custom-modal-1');
+    }
     this.maintenanceType = value.toLowerCase();
   }
 
   public addMonthlyIncomeOrExpenses( maintenanceData: any ) {
     //console.log('Add Monthly Income Expenses', maintenanceData.valid);
+    this.categoryUpdate = '';
     this.maintenanceSubmitted = true;
     if (this.isFormValid(maintenanceData.value)) {
       let data = maintenanceData.value;
@@ -142,10 +152,15 @@ export class AdminViewComponent implements OnInit {
 
   public onModifySelectedData( e ): void {
     this.setPreSelection(e);
+    this.categoryUpdate = this.maintenanceForm.controls.maintenanceType.value;
   }
 
   public selectedView( e ): void {
     this.getSavedExpensesAndIncomeInfo(e);
+  }
+
+  public closeModal(id): void {
+    this.modalService.close(id);
   }
 
   private getSavedExpensesAndIncomeInfo( value: any = null ) {

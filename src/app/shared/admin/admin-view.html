@@ -1,4 +1,17 @@
 <!-------------------->
+<modal id="custom-modal-1">
+  <div class="modal">
+    <div class="modal-body">
+      <h1>Are you sure!</h1>
+      <p>
+        you are trying to change category.
+      </p>
+      <button (click)="closeModal('custom-modal-1');">Close</button>
+    </div>
+  </div>
+  <div class="modal-background"></div>
+</modal>
+
 <div class="admin-form" style="padding-top: 10px">
   <label>View Expenditure for: </label>
   <show-data (showSelectedView)="selectedView($event)"></show-data>

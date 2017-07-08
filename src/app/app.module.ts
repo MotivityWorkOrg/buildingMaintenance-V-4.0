@@ -36,6 +36,8 @@ import {ForgotPasswordComponent} from './auth/forgot/forgot-password.component';
 import {ResetPasswordComponent} from './auth/forgot/resetpassword.component';
 import {FlatsInfoComponent} from './flats/flats-info.component';
 import {TooltipModule} from 'ngx-tooltip';
+import {ModalComponent} from './components/modal/modal.component';
+import {ModalService} from './components/modal/modal.service';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -70,7 +72,8 @@ const APP_PROVIDERS = [
     LogoutComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    FlatsInfoComponent
+    FlatsInfoComponent,
+    ModalComponent
   ],
   providers: [
     APP_PROVIDERS,
@@ -80,7 +83,8 @@ const APP_PROVIDERS = [
     FormHelperService,
     MaintenanceService,
     HttpService,
-    MaintenanceModel
+    MaintenanceModel,
+    ModalService
   ],
   bootstrap: [ AppComponent ]
 })

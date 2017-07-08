@@ -20,7 +20,7 @@
     <tr *ngFor="let expenses of expenditure.expenses" (dblclick)="modifyData(expenses, 'Expense')">
       <td>{{ dateFilter(expenses.paymentDate)}}</td>
       <td>
-        <div tooltip="{{expenses.description}}" tooltipPlacement="right">
+        <div tooltip="{{expenses.description}}" tooltipPlacement="top">
           {{ expenses.category }}
         </div>
       </td>
@@ -52,7 +52,7 @@
       <td>{{ dateFilter(income.paymentDate) }}</td>
       <td>{{income.flatNo}}</td>
       <td>
-        <div tooltip="{{income.description}}" tooltipPlacement="right">
+        <div tooltip="{{income.description}}" tooltipPlacement="top">
           {{ income.category }}
         </div>
       <td>{{ income.amount }}.00</td>
