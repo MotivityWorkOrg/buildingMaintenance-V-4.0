@@ -1,12 +1,16 @@
 <!-------------------->
 <modal id="custom-modal-1">
   <div class="modal">
-    <div class="modal-body">
-      <h1>Are you sure!</h1>
-      <p>
-        you are trying to change category.
-      </p>
-      <button (click)="closeModal('custom-modal-1');">Close</button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Are you sure!</h1>
+      </div>
+      <div class="modal-body">
+        <p>you are trying to change category.</p>
+      </div>
+      <div class="modal-footer">
+        <button  class="btn btn-primary" (click)="closeModal('custom-modal-1');">Close</button>
+      </div>
     </div>
   </div>
   <div class="modal-background"></div>

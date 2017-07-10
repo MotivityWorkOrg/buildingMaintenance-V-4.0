@@ -7,14 +7,17 @@
 modal {
   /* modals are hidden by default */
   display: none;
+  font-family: arial;
 
   .modal {
     /* modal container fixed across whole screen */
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 20%;
     bottom: 0;
     left: 0;
+    display: block;
+    width: 400px;
+    margin: auto;
 
     /* z-index must be higher than .modal-background */
     z-index: 1000;
@@ -23,11 +26,17 @@ modal {
     overflow: auto;
 
     .modal-body {
-      padding: 20px;
+      padding: 20px 15px;
       background: #fff;
-
-      /* margin exposes part of the modal background */
-      margin: 40px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 0px;
+    }
+    .modal-header {
+      h1 {
+        font-size: 24px;
+        margin: 0px;
+      }
     }
   }
 
@@ -53,3 +62,18 @@ body.modal-open {
   overflow: hidden;
 }
 
+.information {
+  h1 {
+    color: #1c02ff;
+  }
+}
+.sucessfull {
+  h1 {
+    color: #09b119;
+  }
+}
+.error {
+  h1 {
+    color: #ff0000;
+  }
+}
