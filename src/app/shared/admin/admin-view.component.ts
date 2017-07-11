@@ -34,6 +34,7 @@ export class AdminViewComponent implements OnInit {
   public isDataChanged: boolean;
   public totalYearExpenditure: Array<Expenditure>;
   private categoryUpdate: string;
+  private isCategoryTypeChanged: boolean;
   public myDatePickerOptions: IMyDpOptions = {
     disableUntil: {year: new Date().getFullYear(), month: new Date().getMonth(), day: 0},
     disableSince: {
@@ -60,7 +61,7 @@ export class AdminViewComponent implements OnInit {
                public fh: FormHelperService,
                private model: MaintenanceModel,
                private appState: AppState,
-               private modalService: ModalService) {
+               private modalService: ModalService ) {
     this.maintenanceTypes = [ {id: 0, type: 'Expense'}, {id: 1, type: 'Income'} ];
     this.isMonthView = true;
     //modal.defaultViewContainer = vcRef;
@@ -99,11 +100,16 @@ export class AdminViewComponent implements OnInit {
 
   public addMonthlyIncomeOrExpenses( maintenanceData: any ) {
     //console.log('Add Monthly Income Expenses', maintenanceData.valid);
+    this.maintenanceForm.controls.maintenanceType.setValue(this.maintenanceType);
     this.categoryUpdate = '';
     this.maintenanceSubmitted = true;
-    if (this.isFormValid(maintenanceData.value)) {
-      let data = maintenanceData.value;
-      if (data.maintenanceType === 'Expense') {
+    let data = maintenanceData.value;
+    if (this.isCategoryTypeChanged) {
+      data.maintenanceType = this.maintenanceType === 'expense' ? 'Expense' : 'Income';
+    }
+
+    if (this.isFormValid(data)) {
+      if (data.maintenanceType === 'expense') {
         let expense = new Expense();
         expense._id = this.itemId;
         expense.amount = data.amount;
@@ -114,9 +120,7 @@ export class AdminViewComponent implements OnInit {
         expense.paymentDate = DateUtil.convertObjectToDate(data.paymentDate.date);
         this.maintenanceService.addOrUpdateExpenses(expense).then(( response: any ) => {
           this.setPreSelection();
-          this.itemId = '';
-          this.isDataChanged = true;
-          this.getSavedExpensesAndIncomeInfo();
+          this.resetData();
           console.log('Data is coming from Expense ::: ', response);
         }).catch(( err: any ) => {
           this.eh.handleError(err);
@@ -133,11 +137,8 @@ export class AdminViewComponent implements OnInit {
         income.description = data.comment;
         //console.log(income);
         this.maintenanceService.addOrUpdateIncomes(income).then(( response: any ) => {
-          this.setPreSelection();
-          this.itemId = '';
-          this.isDataChanged = true;
-          this.getSavedExpensesAndIncomeInfo();
-          console.log('Data is coming from Income ::: ', response);
+          this.resetData();
+          console.log('Data is coming from Expense ::: ', response);
         }).catch(( err: any ) => {
           this.eh.handleError(err);
         });
@@ -159,8 +160,28 @@ export class AdminViewComponent implements OnInit {
     this.getSavedExpensesAndIncomeInfo(e);
   }
 
-  public closeModal(id): void {
+  public continueOK( id ): void {
+    this.maintenanceForm.controls.maintenanceType.disable({onlySelf: true});
+    this.maintenanceForm.controls.amount.setValue('');
+    this.maintenanceForm.controls.comment.setValue('');
+    //console.log(' Item Id is  ', this.itemId);
+    this.isCategoryTypeChanged = true;
+    this.itemId = null;
     this.modalService.close(id);
+  }
+
+  public closeModal( id ): void {
+    this.maintenanceForm.controls.maintenanceType.setValue(this.categoryUpdate);
+    this.modalService.close(id);
+  }
+
+  private resetData(): void {
+    this.setPreSelection();
+    this.maintenanceForm.controls.maintenanceType.enable({onlySelf: true});
+    this.itemId = null;
+    this.isDataChanged = true;
+    this.getSavedExpensesAndIncomeInfo();
+    this.isCategoryTypeChanged = false;
   }
 
   private getSavedExpensesAndIncomeInfo( value: any = null ) {
@@ -232,7 +253,7 @@ export class AdminViewComponent implements OnInit {
     } else if (!(data.paymentDate) || typeof data.paymentDate !== 'object') {
       this.errorMessage = 'select payment date';
       isValid = false;
-    } else if (data.maintenanceType === '') {
+    } else if (!data.maintenanceType || data.maintenanceType === '') {
       isValid = false;
       this.errorMessage = 'select maintenance type';
     } else if (data.maintenanceType === 'Expense') {

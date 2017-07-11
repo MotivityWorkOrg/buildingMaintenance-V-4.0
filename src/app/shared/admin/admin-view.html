@@ -6,10 +6,11 @@
         <h1>Are you sure!</h1>
       </div>
       <div class="modal-body">
-        <p>you are trying to change category.</p>
+        <p>you are trying to change category. It will save, not update the record</p>
       </div>
       <div class="modal-footer">
-        <button  class="btn btn-primary" (click)="closeModal('custom-modal-1');">Close</button>
+        <button  class="btn btn-danger" (click)="closeModal('custom-modal-1');">Close</button>
+        <button  class="btn btn-primary" (click)="continueOK('custom-modal-1');">OK</button>
       </div>
     </div>
   </div>
