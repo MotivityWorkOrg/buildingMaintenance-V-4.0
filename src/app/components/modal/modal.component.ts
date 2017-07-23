@@ -1,7 +1,7 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, OnDestroy} from '@angular/core';
 import * as $ from 'jquery';
 
-import { ModalService } from './modal.service';
+import {ModalService} from './modal.service';
 
 @Component({
   moduleId: module.id.toString(),
@@ -13,7 +13,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   private element;
 
-  constructor(private modalService: ModalService, public el: ElementRef) {
+  constructor( private modalService: ModalService, public el: ElementRef ) {
     this.element = $(el.nativeElement);
   }
 
@@ -30,7 +30,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.element.appendTo('body');
 
     // close modal on background click
-    this.element.on('click', function (e: any) {
+    this.element.on('click', function ( e: any ) {
       let target = $(e.target);
       if (!target.closest('.modal-body').length) {
         modal.close();

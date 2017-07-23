@@ -5,6 +5,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '
 import {FormHelperService} from '../services/form-helper.service';
 import {AppState} from '../app.service';
 import {ErrorHandleService} from '../services/error-handle.service';
+import {CommonUtil} from '../util/CommonUtil';
 
 @Component({
   selector: 'my-register',
@@ -23,11 +24,13 @@ export class SignUpComponent implements OnInit {
   public role: AbstractControl;
   public confirm: AbstractControl;
   public errorMessage = '';
-
+  public imageContent = '';
+  public imageSizeError = '';
   public datesList = [];
   public monthList = [];
   public yearList = [];
   public roleList = [ {name: 'ADMIN'}, {name: 'USER'}, {name: 'MODERATOR'} ];
+  private fileType = '';
 
   constructor( public appState: AppState,
                private fb: FormBuilder,
@@ -52,18 +55,47 @@ export class SignUpComponent implements OnInit {
       day: new FormControl('', [ Validators.required ]),
       month: new FormControl('', [ Validators.required ]),
       year: new FormControl('', [ Validators.required ]),
-      confirm: new FormControl('', [ Validators.required ]),
+      confirm: new FormControl('', [ Validators.required ])
     }, {
       validator: this.fh.matchingPasswords('password', 'confirm')
     });
+    this.submitState('SignUP');
   }
 
-  public register( signUpData: any ) {
+  public registerNewUser(): void {
+    let signUpData = this.registerUser.value;
+    //signUpData.imageData = this.imageContent;
+    //console.log(' Sign up data is  :: ', signUpData);
     this.auth.signup(signUpData).subscribe({
       next: ( response ) => console.log(' getting Response from server ', response),
       error: ( err: any ) => this.singUpError(err),
       complete: () => this.router.navigateByUrl('/')
     });
+  }
+
+  public handleFileSelect( evt ): void {
+    let files = evt.target.files;
+    let file = files[ 0 ];
+    this.imageSizeError = '';
+    this.imageContent = '';
+    if (files && file) {
+      let imageSizeInMB = ((file.size) / 1024) / 1024;
+      //console.log('type   ', this.fileType, ' File ::  ', file, ' SIZE ', Math.round(imageSizeInMB * 100) / 100);
+      if (Math.round(imageSizeInMB * 100) / 100 <= 2.0) {
+        this.fileType = file.type;
+        let reader = new FileReader();
+        reader.onload = this._handleReaderLoaded.bind(this);
+        reader.readAsBinaryString(file);
+      } else {
+        this.imageSizeError = 'Image size should be less than 2 MB';
+      }
+    }
+  }
+
+  private _handleReaderLoaded( readerEvt ): void {
+    this.imageContent = CommonUtil.convertImageToBase64String(this.fileType, readerEvt.target.result);
+    //this.registerUser.value.imageData = this.imageContent;
+    //console.log(this.registerUser.value.imageData);
   }
 
   private singUpError( err: any ) {
@@ -100,5 +132,10 @@ export class SignUpComponent implements OnInit {
     for (let i = max; i >= min; i--) {
       this.yearList.push(i);
     }
+  }
+
+  private submitState( value: string ): void {
+    console.log('submitState', value);
+    this.appState.set('value', value);
   }
 }

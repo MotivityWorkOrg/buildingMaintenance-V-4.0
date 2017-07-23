@@ -48,4 +48,9 @@ export class CommonUtil {
     });
     return obj;
   }
+
+  public static convertImageToBase64String( type: string, image ): string {
+    let base64String = btoa(image);
+    return 'data:' + `${type}` + ';base64,' + base64String;
+  }
 }

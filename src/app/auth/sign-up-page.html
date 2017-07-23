@@ -4,7 +4,7 @@
     <div *ngIf="errorMessage !== ''" class="alert-danger">
       <label>{{errorMessage}}</label>
     </div>
-    <form class="form" [formGroup]="registerUser" (ngSubmit)="register(registerUser.value)" novalidate
+    <form class="form" [formGroup]="registerUser" (ngSubmit)="registerNewUser()" novalidate
           autocomplete="off">
       <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'firstName')}">
         <label>First Name</label>
@@ -68,6 +68,15 @@
           <option *ngFor="let option of roleList" value="{{option.name}}">{{option.name}}</option>
         </select>
       </div>
+      <!--<div class="form-group">
+        <label>browse image</label>
+        <br/>
+        <small class="text-danger" *ngIf="imageSizeError !== ''">
+          {{imageSizeError}}
+        </small>
+        <input type="file" id="filePicker" (change)="handleFileSelect($event)" accept="image/*">
+        <img *ngIf="imageContent !== ''" [src]="imageContent" width="80" height="80">
+      </div>-->
       <div class="clr text-center">
         <button class="btn btn-primary btn-sm btn-login" type="submit" [disabled]="!registerUser.valid">
           Sign Up

@@ -6,7 +6,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_RESOLVER_PROVIDERS} from './app.resolver';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
-import {AboutComponent} from './about/about.component';
 import {ApiService} from './shared';
 import {CLIENT_ROUTER_PROVIDERS, ROUTES} from './app.routing';
 
@@ -38,6 +37,8 @@ import {FlatsInfoComponent} from './flats/flats-info.component';
 import {TooltipModule} from 'ngx-tooltip';
 import {ModalComponent} from './components/modal/modal.component';
 import {ModalService} from './components/modal/modal.service';
+import {ProfileComponent} from './profile/profile.component';
+import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -56,12 +57,12 @@ const APP_PROVIDERS = [
     RouterModule.forRoot(ROUTES),
     MyDatePickerModule,
     AccordionModule,
-    TooltipModule
+    TooltipModule,
+    InlineEditorModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     LoginComponent,
     SignUpComponent,
     ShowDataComponent,
@@ -73,7 +74,8 @@ const APP_PROVIDERS = [
     ForgotPasswordComponent,
     ResetPasswordComponent,
     FlatsInfoComponent,
-    ModalComponent
+    ModalComponent,
+    ProfileComponent
   ],
   providers: [
     APP_PROVIDERS,
