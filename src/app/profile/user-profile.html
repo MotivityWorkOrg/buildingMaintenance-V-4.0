@@ -24,7 +24,7 @@
                 <label class="control-label">First Name</label>
 
                   <inline-editor type="text" [(ngModel)]="editableTextName"
-                                 name="editableText" disabled="true"></inline-editor>
+                                 name="editableText" [disabled]="isAdmin"></inline-editor>
                   <p class="help-block"></p>
 
               </div>

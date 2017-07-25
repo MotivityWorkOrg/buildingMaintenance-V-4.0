@@ -11,22 +11,16 @@ import {FormHelperService} from '../services/form-helper.service';
 export class ProfileComponent implements OnInit {
   //public profileForm: FormGroup;
   public editableTextName = 'Ravi Kumar';
+  public isAdmin: boolean;
 
   constructor( private appState: AppState,
                public fh: FormHelperService ) {
-
+    //console.log('In Profile Page');
   }
 
   ngOnInit() {
     this.submitState('Profile Page');
-    /*this.profileForm = this.fb.group({
-      firstName: new FormControl('', [ Validators.maxLength(3) ])
-    });*/
-    this.setDefaultData();
-  }
-
-  private setDefaultData(): void {
-    //this.profileForm.controls.firstName.setValue('Ravi Kumar');
+    this.isAdmin = JSON.parse(localStorage.getItem('logged-user')).role !== 'ADMIN';
   }
 
   private submitState( value: string ): void {
