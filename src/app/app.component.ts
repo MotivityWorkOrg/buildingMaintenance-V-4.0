@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'my-app', // <my-app></my-app>
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ]
+  styleUrls: [ './app.component.less' ]
 })
 export class AppComponent implements OnInit, OnChanges {
   public isLoggedIn = false;
