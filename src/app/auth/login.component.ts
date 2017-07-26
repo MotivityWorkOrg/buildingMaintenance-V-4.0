@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
 
   private loginSuccess( resp: any ): void {
     let loggedInfo = resp.json();
-    localStorage.setItem('logged-user', JSON.stringify(loggedInfo.user));
     this.auth.setToken(loggedInfo.token);
   }
 

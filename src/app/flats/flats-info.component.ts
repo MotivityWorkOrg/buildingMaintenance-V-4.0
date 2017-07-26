@@ -8,6 +8,7 @@ import {GlobalValidator} from '../validators/global.validators';
 import {FlatUser} from '../vo/flat-user.vo';
 import {Tenant} from '../vo/tenant.vo';
 import {CommonUtil} from '../util/CommonUtil';
+import {AuthService} from 'ng2-ui-auth';
 
 @Component({
   selector: 'flats-info',
@@ -31,7 +32,8 @@ export class FlatsInfoComponent implements OnInit {
                private eh: ErrorHandleService,
                private fb: FormBuilder,
                public fh: FormHelperService,
-               private appState: AppState ) {
+               private appState: AppState,
+               private auth: AuthService ) {
 
   }
 
@@ -55,8 +57,7 @@ export class FlatsInfoComponent implements OnInit {
       altNumber: new FormControl('', [ Validators.required, Validators.minLength(10), Validators.maxLength(10) ]),
       email: new FormControl('', [ Validators.required, GlobalValidator.mailFormat ])
     });
-    let userInfo: any = JSON.parse(localStorage.getItem('logged-user'));
-    this.isAdminView = userInfo.role === 'ADMIN';
+    this.isAdminView = this.auth.getPayload().role === 'ADMIN';
     this.getFlatsUserInfo();
   }
 

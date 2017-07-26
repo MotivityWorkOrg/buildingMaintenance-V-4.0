@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppState} from '../app.service';
-import {FormHelperService} from '../services/form-helper.service';
+import {AuthService} from 'ng2-ui-auth';
 
 @Component({
   selector: 'user-profile',
@@ -14,13 +14,13 @@ export class ProfileComponent implements OnInit {
   public isAdmin: boolean;
 
   constructor( private appState: AppState,
-               public fh: FormHelperService ) {
+               private auth: AuthService ) {
     //console.log('In Profile Page');
   }
 
   ngOnInit() {
     this.submitState('Profile Page');
-    this.isAdmin = JSON.parse(localStorage.getItem('logged-user')).role !== 'ADMIN';
+    this.isAdmin = this.auth.getPayload().role !== 'ADMIN';
   }
 
   private submitState( value: string ): void {
