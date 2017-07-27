@@ -39,6 +39,7 @@ import {ModalComponent} from './components/modal/modal.component';
 import {ModalService} from './components/modal/modal.service';
 import {ProfileComponent} from './profile/profile.component';
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
+import {DropdownModule} from 'ng2-dropdown';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -58,7 +59,8 @@ const APP_PROVIDERS = [
     MyDatePickerModule,
     AccordionModule,
     TooltipModule,
-    InlineEditorModule
+    InlineEditorModule,
+    DropdownModule
   ],
   declarations: [
     AppComponent,

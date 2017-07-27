@@ -4,6 +4,14 @@
     <a [routerLink]="['flats']">Flats</a>
     <a [routerLink]="['profile']">Profile</a>
     <a [routerLink]="['logout']">logout</a>
+    <div class="dropdown" dropdown [dropdownToggle]="false">
+      <button class="btn btn-primary" dropdown-open>My Heroes</button>
+      <ul class="dropdown-menu">
+        <li><a>Badman</a></li>
+        <li><a>Sadman</a></li>
+        <li><a>Lieman</a></li>
+      </ul>
+    </div>
   </nav>
 </header>
 <main>
