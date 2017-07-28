@@ -17,12 +17,12 @@
   <div class="modal-background"></div>
 </modal>
 
-<div class="admin-form" style="padding-top: 10px">
-  <label>View Expenditure for: </label>
+<div class="admin-form">
+  <h3>View Expenditure</h3>
   <show-data (showSelectedView)="selectedView($event)"></show-data>
   <form class="form-horizontal" [formGroup]="maintenanceForm" autocomplete="off" novalidate>
-    <h3>Monthly Entries</h3>
-    <h4 class="alert-danger" *ngIf="maintenanceSubmitted && errorMessage != ''"> {{errorMessage}} </h4>
+    <h4>Monthly Entries</h4>
+    <h6 class="alert-danger" *ngIf="maintenanceSubmitted && errorMessage != ''"> {{errorMessage}} </h6>
     <div class="form-group">
       <label class="control-label col-sm-2">Period</label>
       <div class="col-sm-3">
@@ -98,10 +98,10 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-2">
-        <button class="btn btn-default"
+        <button class="btn btn-primary"
                 (click)="addMonthlyIncomeOrExpenses(maintenanceForm)">Add
         </button>
-        <button class="btn btn-danger" (click)="refreshForm()">Cancel</button>
+        <button class="btn btn-primary" (click)="refreshForm()">Cancel</button>
       </div>
     </div>
   </form>

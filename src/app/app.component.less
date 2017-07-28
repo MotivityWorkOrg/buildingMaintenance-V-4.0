@@ -7,13 +7,14 @@ header.block {
 
 header.active {
   background-color: #fff;
-  padding: 16px;
+  padding: 0px 15px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
   z-index: 900;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 nav {
@@ -40,4 +41,52 @@ footer {
 
 .disabled {
   display: none;
+}
+.navbar {
+  min-height: auto;
+  margin-bottom: 0px;
+  border: none;
+  background: none;
+  .user-info {
+    float: right;
+    img {
+      margin-top: 6px;
+      &[dropdown-open] {
+        cursor: pointer;
+      }
+    }
+    ul {
+      list-style: none;
+      li {
+        padding-bottom: 5px;
+      }
+    }
+  }
+  .profile-pic {
+    float: left;
+    padding-right: 15px;
+    img {
+      width: 70px;
+      margin-left: 5px;
+      margin-top: 0px;
+    }
+  }
+  .dropdown-menu {
+    right: 0px;
+    left: auto;
+    min-width: 235px;
+    padding: 10px;
+    margin-top: 6px;
+    .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid black;
+      position: absolute;
+      right: 22px;
+      top: -8px
+
+    }
+  }
 }

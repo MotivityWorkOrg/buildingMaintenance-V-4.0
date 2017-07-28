@@ -1,16 +1,22 @@
 <header [ngClass]="auth.isAuthenticated() ? 'active' : 'block'">
-  <nav *ngIf="auth.isAuthenticated()">
-    <a [routerLink]="['home']">Home</a>
-    <a [routerLink]="['flats']">Flats</a>
-    <a [routerLink]="['profile']">Profile</a>
-    <a [routerLink]="['logout']">logout</a>
-    <div class="dropdown" dropdown [dropdownToggle]="false">
-      <button class="btn btn-primary" dropdown-open>My Heroes</button>
-      <ul class="dropdown-menu">
-        <li><a>Badman</a></li>
-        <li><a>Sadman</a></li>
-        <li><a>Lieman</a></li>
-      </ul>
+  <nav *ngIf="auth.isAuthenticated()" class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li><a [routerLink]="['home']">Home</a></li>
+      <li><a [routerLink]="['flats']">Flats</a></li>
+    </ul>
+
+    <div class="dropdown user-info" dropdown [dropdownToggle]="false">
+      <a><img src="../assets/images/user-info-img-thb.png" type="buttons" dropdown-open /></a>
+      <div class="dropdown-menu">
+        <span class="arrow-up"></span>
+        <div class="profile-pic"><img src="../assets/images/user-info-img.png" /></div>
+        <ul>
+          <li>Khanna Profile</li>
+          <li><a [routerLink]="['profile']">Profile</a></li>
+          <li><a [routerLink]="['logout']">logout</a></li>
+        </ul>
+
+      </div>
     </div>
   </nav>
 </header>

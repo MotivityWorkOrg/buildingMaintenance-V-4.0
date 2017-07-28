@@ -4,82 +4,85 @@
       toppad">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Sheena Shrestha</h3>
+          <h2 class="panel-title">User Profile</h2>
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-3 col-lg-3 " align="center">
+            <div class="col-xs-12 col-md-4 col-lg-3" align="center">
               <img alt="User Pic"
                    src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
                    class="img-circle img-responsive"/>
             </div>
-
-            <form class="form-horizontal">
-              <!-- Address form -->
-
-              <h2>User Profile</h2>
-
-              <!-- first-name input-->
-              <div class="form-group">
-                <label class="control-label">First Name</label>
-
-                  <inline-editor type="text" [(ngModel)]="editableTextName"
-                                 name="editableText" [disabled]="isAdmin"></inline-editor>
-                  <p class="help-block"></p>
-
+            <div class="col-xs-12 col-md-8 col-lg-9" style="padding-bottom: 20px;">
+              <h2>Ravi Kumar</h2>
+              <div class="row">
+                <label class="col-sm-4 control-label">Plot No:</label>
+                <div class="col-sm-8">104</div>
               </div>
-
-              <!-- last-name input-->
-              <div class="control-group">
-                <label class="control-label">Last Name</label>
-                <div class="controls">
-                  <input id="last-name" name="last-name" type="text" placeholder="last name"
-                         class="input-xlarge">
-                  <p class="help-block"></p>
-                </div>
+              <div class="row">
+                <label class="col-sm-4 control-label">Mobile No:</label>
+                <div class="col-sm-8">9440345626</div>
               </div>
-
-              <!-- Select Basic -->
-              <div class="control-group">
-                <label class="control-label" for="selectbasic">Gender</label>
-                <div class="controls">
-                  <select id="selectbasic" name="selectbasic" class="input-xlarge">
-                    <option>Select</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label">Date of Birth</label>
-                <div class="controls">
-                  <div data-date-format="dd-mm-yyyy" data-date="12-02-2012" id="dp3" class="input-append date">
-                    <input type="text" title="text" readonly="" value="12-02-2012" size="16" class="span2">
-                    <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">First Name</label>
+                  <div class="col-sm-9">
+                    <inline-editor type="text" [(ngModel)]="editableTextName" name="editableText" [disabled]="isAdmin"></inline-editor>
+                    <p class="help-block"></p>
                   </div>
                 </div>
-              </div>
 
-              <!-- city input-->
-              <div class="control-group">
-                <label class="control-label">Mobile No.</label>
-                <div class="controls">
-                  <input id="mobile" name="mobile" type="text" placeholder="mobile no." class="input-xlarge">
-                  <p class="help-block"></p>
+                <!-- last-name input-->
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Last Name</label>
+                  <div class="col-sm-9">
+                    <input id="last-name" name="last-name" type="text" placeholder="last name" class="input-xlarge">
+                    <p class="help-block"></p>
+                  </div>
                 </div>
-              </div>
 
-              <!-- city input-->
-              <div class="control-group">
-                <label class="control-label">City / Town</label>
-                <div class="controls">
-                  <input id="city" name="city" type="text" placeholder="city" class="input-xlarge">
-                  <p class="help-block"></p>
+                <!-- Select Basic -->
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="selectbasic">Gender</label>
+                  <div class="col-sm-9">
+                    <select id="selectbasic" name="selectbasic" class="input-xlarge">
+                      <option>Select</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-            </form>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Date of Birth</label>
+                  <div class="col-sm-9">
+                    <div data-date-format="dd-mm-yyyy" data-date="12-02-2012" id="dp3" class="input-append date">
+                      <input type="text" title="text" readonly="" value="12-02-2012" size="16" class="span2">
+                      <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- city input-->
+                <div class="form-group">
+                  <label class="col-sm-3  control-label">Mobile No.</label>
+                  <div class="col-sm-9">
+                    <input id="mobile" name="mobile" type="text" placeholder="mobile no." class="input-xlarge">
+                    <p class="help-block"></p>
+                  </div>
+                </div>
+
+                <!-- city input-->
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">City / Town</label>
+                  <div class="col-sm-9">
+                    <input id="city" name="city" type="text" placeholder="city" class="input-xlarge">
+                    <p class="help-block"></p>
+                  </div>
+                </div>
+              </form>
           </div>
         </div>
         <div class="panel-footer">
