@@ -40,6 +40,7 @@ import {ModalService} from './components/modal/modal.service';
 import {ProfileComponent} from './profile/profile.component';
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 import {DropdownModule} from 'ng2-dropdown';
+import {FileSelectDirective} from 'ng2-file-upload';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -77,7 +78,8 @@ const APP_PROVIDERS = [
     ResetPasswordComponent,
     FlatsInfoComponent,
     ModalComponent,
-    ProfileComponent
+    ProfileComponent,
+    FileSelectDirective
   ],
   providers: [
     APP_PROVIDERS,

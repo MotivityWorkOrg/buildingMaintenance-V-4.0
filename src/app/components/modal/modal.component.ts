@@ -13,13 +13,15 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   private element;
 
+  public closeOutSideClick: boolean;
+
   constructor( private modalService: ModalService, public el: ElementRef ) {
     this.element = $(el.nativeElement);
   }
 
   ngOnInit(): void {
     let modal = this;
-
+    this.closeOutSideClick = true;
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');
@@ -32,7 +34,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     // close modal on background click
     this.element.on('click', function ( e: any ) {
       let target = $(e.target);
-      if (!target.closest('.modal-body').length) {
+      //console.log(' Element Click ', target);
+      // Use this
+      if (this.closeOutSideClick && !target.closest('.modal-body').length) {
+        //console.log(' Coming inside Close');
         modal.close();
       }
     });

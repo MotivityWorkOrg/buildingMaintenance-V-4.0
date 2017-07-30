@@ -1,8 +1,3 @@
-@import '../../../styles/style.less';
-@import '../../../styles/bootstrap.less';
-
-/* MODAL STYLES
--------------------------------*/
 modal {
   /* modals are hidden by default */
   display: none;
@@ -53,40 +48,5 @@ modal {
 
     /* z-index must be below .modal and above everything else  */
     z-index: 900;
-  }
-}
-
-body.modal-open {
-  /* body overflow is hidden to hide main scrollbar when modal window is open */
-  overflow: hidden;
-}
-
-.information {
-  h1 {
-    color: #1c02ff;
-  }
-}
-
-.success {
-  h1 {
-    color: #09b119;
-  }
-}
-
-.error {
-  h1 {
-    color: #ff0000;
-  }
-}
-
-.admin-form {
-  .form-horizontal {
-    margin-top: 20px;
-    .form-group {
-      label {
-        font-weight: normal;
-        font-size: 0.875rem;
-      }
-    }
   }
 }

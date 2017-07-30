@@ -6,21 +6,39 @@
     </ul>
 
     <div class="dropdown user-info" dropdown [dropdownToggle]="false">
-      <a><img src="../assets/images/user-info-img-thb.png" type="buttons" dropdown-open /></a>
+      <a><img [src]="userProfileImage" type="button" dropdown-open width="40" height="40"/></a>
       <div class="dropdown-menu">
         <span class="arrow-up"></span>
-        <div class="profile-pic"><img src="../assets/images/user-info-img.png" /></div>
+        <div class="profile-pic" (click)="changeProfilePic()">
+          <img [src]="userProfileImage"/></div>
         <ul>
-          <li>Khanna Profile</li>
+          <li>{{userInfo.displayName}}</li>
+          <li class="email-info">{{userInfo.email}}</li>
           <li><a [routerLink]="['profile']">Profile</a></li>
           <li><a [routerLink]="['logout']">logout</a></li>
         </ul>
-
       </div>
     </div>
   </nav>
 </header>
 <main>
+  <modal id="user-image">
+    <div class="modal">
+      <div class="modal-content modal-custom">
+        <small class="alert-danger " *ngIf="imageSizeError != ''"> {{imageSizeError}} </small>
+        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" accept="image/*" />
+        <img class="image" *ngIf="imageContent !== ''" [src]="imageContent" width="80" height="80">
+        <div class="modal-footer">
+          <button class="btn btn-danger" (click)="closeModal('user-image');">Close</button>
+          <button type="button" class="btn btn-success btn-s"
+                   (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+          Upload
+        </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-background"></div>
+  </modal>
   <h1 *ngIf="!auth.isAuthenticated()">{{title}}</h1>
   <router-outlet></router-outlet>
 </main>
