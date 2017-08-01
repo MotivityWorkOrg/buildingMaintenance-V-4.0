@@ -9,8 +9,8 @@
         <p>you are trying to change category. It will save, not update the record</p>
       </div>
       <div class="modal-footer">
-        <button  class="btn btn-danger" (click)="closeModal('custom-modal-1');">Close</button>
-        <button  class="btn btn-primary" (click)="continueOK('custom-modal-1');">OK</button>
+        <button class="btn btn-danger" (click)="closeModal('custom-modal-1');">Close</button>
+        <button class="btn btn-primary" (click)="continueOK('custom-modal-1');">OK</button>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@
       <label class="control-label col-sm-2">Amount</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" placeholder="Enter Amount" formControlName="amount" required
-               [maxlength]="4">
+               [maxlength]="4" OnlyNumber="true">
       </div>
     </div>
     <div class="form-group" *ngIf="maintenanceType === 'expense'">

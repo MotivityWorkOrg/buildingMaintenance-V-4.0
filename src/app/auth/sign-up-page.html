@@ -42,7 +42,7 @@
       <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'phoneNumber')}">
         <label>Phone Number</label>
         <input type="tel" formControlName="phoneNumber" placeholder="Enter phone number" class="form-control"
-               [maxlength]="10" required/>
+               [maxlength]="10" required OnlyNumber="true"/>
       </div>
       <div class="form-group">
         <label>Date of Birth</label>

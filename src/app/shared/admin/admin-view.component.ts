@@ -52,6 +52,9 @@ export class AdminViewComponent implements OnInit {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1, day: new Date().getDate() + 1
     },
+    monthSelector: true,
+    yearSelector: false,
+    showTodayBtn: false,
     dateFormat: 'mmm/yyyy'
   };
 

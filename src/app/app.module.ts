@@ -41,6 +41,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 import {DropdownModule} from 'ng2-dropdown';
 import {FileSelectDirective} from 'ng2-file-upload';
+import {OnlyNumber} from './components/directives/onlyNumber.directive';
 
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -79,7 +80,8 @@ const APP_PROVIDERS = [
     FlatsInfoComponent,
     ModalComponent,
     ProfileComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    OnlyNumber
   ],
   providers: [
     APP_PROVIDERS,
