@@ -87,7 +87,6 @@
     "directive-selector": [
       true,
       "attribute",
-      "my",
       "camelCase"
     ],
     "component-selector": [

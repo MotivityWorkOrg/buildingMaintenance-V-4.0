@@ -6,7 +6,7 @@
     </ul>
 
     <div class="dropdown user-info" dropdown [dropdownToggle]="false">
-      <a><img [src]="userProfileImage" type="button" dropdown-open width="40" height="40"/></a>
+      <a><img class="display-pic" [src]="userProfileImage" type="button" dropdown-open/></a>
       <div class="dropdown-menu">
         <span class="arrow-up"></span>
         <div class="profile-pic" (click)="changeProfilePic()">

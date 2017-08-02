@@ -3,13 +3,13 @@ import {Directive, HostListener, Input} from '@angular/core';
 @Directive({
   selector: '[OnlyNumber]'
 })
-export class OnlyNumber {
+
+export class OnlyNumberDirective {
+  @Input() OnlyNumber: boolean;
 
   constructor() {
 
   }
-
-  @Input() OnlyNumber: boolean;
 
   @HostListener('keydown', [ '$event' ])
   onKeyDown( event ) {
@@ -17,11 +17,11 @@ export class OnlyNumber {
     if (this.OnlyNumber) {
       if ([ 46, 8, 9, 27, 13, 110, 190 ].indexOf(e.keyCode) !== -1 ||
         // Allow: Ctrl+A
-        (e.keyCode == 65 && e.ctrlKey === true) ||
+        (e.keyCode === 65 && e.ctrlKey === true) ||
         // Allow: Ctrl+C
-        (e.keyCode == 67 && e.ctrlKey === true) ||
+        (e.keyCode === 67 && e.ctrlKey === true) ||
         // Allow: Ctrl+X
-        (e.keyCode == 88 && e.ctrlKey === true) ||
+        (e.keyCode === 88 && e.ctrlKey === true) ||
         // Allow: home, end, left, right
         (e.keyCode >= 35 && e.keyCode <= 39)) {
         // let it happen, don't do anything
