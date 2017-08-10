@@ -61,7 +61,9 @@ export class AppComponent implements OnInit, OnChanges {
       this.modalService.close('user-image');
     };
     let staticImage = '../assets/images/user-info-img.png';
-    this.userProfileImage = this.userInfo.profileImage ? this.userInfo.profileImage : staticImage;
+    if (this.userInfo) {
+      this.userProfileImage = this.userInfo.profileImage ? this.userInfo.profileImage : staticImage;
+    }
   }
 
   public changeProfilePic(): void {
@@ -73,6 +75,6 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges( changes: SimpleChanges ): void {
-    console.log(changes);
+    console.log(' Changes are ', changes);
   }
 }

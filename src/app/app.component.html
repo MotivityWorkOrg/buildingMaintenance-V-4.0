@@ -12,8 +12,8 @@
         <div class="profile-pic" (click)="changeProfilePic()">
           <img [src]="userProfileImage"/></div>
         <ul>
-          <li>{{userInfo.displayName}}</li>
-          <li class="email-info">{{userInfo.email}}</li>
+          <li>{{userInfo ? userInfo.displayName : ''}}</li>
+          <li class="email-info">{{userInfo ? userInfo.email : ''}}</li>
           <li><a [routerLink]="['profile']">Profile</a></li>
           <li><a [routerLink]="['logout']">logout</a></li>
         </ul>

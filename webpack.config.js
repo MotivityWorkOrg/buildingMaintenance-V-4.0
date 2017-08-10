@@ -8,6 +8,7 @@ let autoprefixer = require('autoprefixer');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
+let PrettierPlugin = require("prettier-webpack-plugin");
 
 /**
  * Env
@@ -144,7 +145,7 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.html$/,
         loader: 'raw-loader',
-        exclude: root('src', 'public')
+        exclude: root('src', 'index')
       },
 
       {
@@ -198,11 +199,11 @@ module.exports = function makeWebpackConfig() {
     // Define env variables to help with builds
     // Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({
-      // Environment helpers
-      'process.env': {
-        ENV: JSON.stringify(ENV)
-      }
-    },
+        // Environment helpers
+        'process.env': {
+          ENV: JSON.stringify(ENV)
+        }
+      },
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
@@ -210,6 +211,14 @@ module.exports = function makeWebpackConfig() {
         'window.Tether': 'tether',
         tether: 'tether',
         Tether: 'tether'
+      }),
+      new PrettierPlugin({
+        printWidth: 80,               // Specify the length of line that the printer will wrap on.
+        tabWidth: 4,                  // Specify the number of spaces per indentation-level.
+        useTabs: false,               // Indent lines with tabs instead of spaces.
+        semi: true,                   // Print semicolons at the ends of statements.
+        encoding: 'utf-8',            // Which encoding scheme to use on files
+        extensions: [".js", ".ts", ".html", ".css", ".less" ]  // Which file extensions to process
       })
     ),
 
@@ -294,7 +303,7 @@ module.exports = function makeWebpackConfig() {
       // Copy assets from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
       new CopyWebpackPlugin([{
-        from: root('src/public')
+        from: root('src/assets')
       }])
     );
   }
