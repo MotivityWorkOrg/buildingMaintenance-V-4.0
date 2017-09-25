@@ -1,12 +1,12 @@
-var path = require('path');
+let path = require('path');
 
-var webpackConfig = require('./webpack.config');
+let webpackConfig = require('./webpack.config');
 
-var ENV = process.env.npm_lifecycle_event;
-var isTestWatch = ENV === 'test-watch';
+let ENV = process.env.npm_lifecycle_event;
+let isTestWatch = ENV === 'test-watch';
 
 module.exports = function (config) {
-  var _config = {
+  let _config = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -17,13 +17,13 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: './karma-shim.js', watched: false }
+      {pattern: './karma-shim.js', watched: false}
     ],
 
     // list of files to exclude
     exclude: [],
 
-    // preprocess matching files before serving them to the browser
+    // pre-process matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       './karma-shim.js': ['webpack', 'sourcemap']

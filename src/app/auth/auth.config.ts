@@ -1,15 +1,16 @@
 import {CustomConfig} from 'ng2-ui-auth';
+import {APIConstants} from '../constants/APIConstants';
 
 const GOOGLE_CLIENT_ID = '<replace me>';
 export const LOCAL_CLIENT_ID = {
-  authorizationEndpoint: 'http://localhost:5000/auth/login',
+  authorizationEndpoint: APIConstants.baseURL,
   clientId: '',
   responseType: 'token',
-  url: 'http://localhost:5000/auth/login'
+  url: `${APIConstants.baseURL}`+'/auth/login'
 };
 
 export class AuthConfig extends CustomConfig {
-  public baseUrl = 'http://localhost:5000';
+  public baseUrl = APIConstants.baseURL;
   public defaultHeaders = {'Content-Type': 'application/json'};
   public tokenPrefix = 'event-manager';
   public loginUrl = '/auth/login';

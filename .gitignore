@@ -51,6 +51,6 @@ __build__/**
 /doc/
 
 # IDE #
-.idea/
+.idea
 buildingMaintenance-V-4.0.iml
 *.swp

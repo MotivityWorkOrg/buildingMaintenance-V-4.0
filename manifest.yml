@@ -1,0 +1,8 @@
+---
+applications:
+- name: maintanance-ui
+  memory: 768M
+  path: ./dist/
+  buildpack: staticfile_buildpack
+  instances: 1
+  random-route: false
